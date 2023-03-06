@@ -5,4 +5,4 @@ from django.http import HttpResponse
 
 def inicio(request):
 
-    return HttpResponse('Vista inicio')
+    return render (request, "AppBlog/inicio.html")
