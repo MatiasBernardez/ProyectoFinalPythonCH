@@ -19,15 +19,15 @@
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#!">INICIO</a>
+                <a class="navbar-brand" href="{% url 'inicio' %}">INICIO</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Zona de atención</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Modalidad de atención</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Orientación</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Tipo de tratamiento</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Especialidad</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'zonaatencion' %}">Zona de atención</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'modalidadatencion' %}">Modalidad de atención</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'orientacion' %}">Orientación</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'tipotratamiento' %}">Tipo de tratamiento</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'especialidad' %}">Especialidad</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Perfil</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Cerrar sesión</a></li>
                     </ul>
