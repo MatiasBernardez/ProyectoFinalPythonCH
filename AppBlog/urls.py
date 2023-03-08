@@ -15,4 +15,6 @@ urlpatterns = [
     path('buscar2/', views.buscartipotratamiento),
     path('buscar3/', views.buscarorientacion),
     path('buscar4/', views.buscarespecialidad),
+    path('leerPsicologos', views.leerPsicologos, name="leerPsicologos"),
+    path('elminarPsicologo/<psicologo_nombre>', views.eliminarPsicologo, name="eliminarPsicologo")
 ]

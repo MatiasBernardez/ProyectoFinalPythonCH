@@ -133,3 +133,22 @@ def buscarespecialidad(request):
         respuesta = "No hay datos con esa descripción."
 
     return render(request, "AppBlog/especialidad.html", {"respuesta":respuesta})
+
+def leerPsicologos(request):
+
+    psicologos = Psicologo.objects.all()
+
+    contexto = {"psicologos":psicologos}
+
+    return render(request, "AppBlog/leerPsicologos.html", contexto)
+
+def eliminarPsicologo(request, psicologo_nombre):
+
+    psicologo = Psicologo.objects.get(nombre=psicologo_nombre)
+    psicologo.delete()
+
+    psicologos = Psicologo.objects.all()
+
+    contexto = {"psicologos":psicologos}
+
+    return render(request, "AppBlog/leerPsicologos.html", contexto)
