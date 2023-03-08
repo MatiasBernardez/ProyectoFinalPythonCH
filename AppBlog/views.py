@@ -43,11 +43,11 @@ def inicio(request):
             informacion = miFormulario.cleaned_data
 
             psicologo = Psicologo(nombre=informacion['nombre'],
-            apellido=informacion['apellido'], matricula=informacion['matricula'],
-            email=informacion['email'], telefono=informacion['telefono'],
-            zonaatencion=informacion['zonaatencion'], modalidadatencion=informacion['modalidadatencion'],
-            orientacion=informacion['orientacion'], especialidad=informacion['especialidad'],
-            tipotratamiento=informacion['tipotratamiento'])
+            apellido=informacion['apellido'], matricula=informacion['matrícula'],
+            email=informacion['email'], telefono=informacion['teléfono'],
+            zonaatencion=informacion['zona_de_atención'], modalidadatencion=informacion['modalidad_de_atención'],
+            orientacion=informacion['orientación'], especialidad=informacion['especialidad'],
+            tipotratamiento=informacion['tipo_de_tratamiento'])
 
             psicologo.save()
 

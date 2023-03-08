@@ -14,3 +14,6 @@ class Psicologo(models.Model):
     orientacion = models.CharField(max_length=40)
     especialidad = models.CharField(max_length=40)
     tipotratamiento = models.CharField(max_length=40)
+
+    def __str__(self):
+        return f"Nombre: {self.nombre} - Apellido: {self.apellido} - Matrícula: {self.matricula} - Email: {self.email} - Teléfono: {self.telefono} - Zona de atención: {self.zonaatencion} - Modalidad de atención: {self.modalidadatencion} - Orientación: {self.orientacion} - Especialidad: {self.especialidad} - Tipo de tratamiento: {self.tipotratamiento}"
