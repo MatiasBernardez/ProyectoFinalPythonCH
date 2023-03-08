@@ -4,11 +4,38 @@
 
 {% block contenidoQueCambia %}
 
-    <h1>TIPO DE TRATAMIENTO</h1>
 
-    <p>MB</p>
+    <h1>BÚSQUEDA POR TIPO DE TRATAMIENTO</h1><br>
 
-    <h3>MB</h3>
+    <form action="/AppBlog/buscar2/" method="GET">
+
+        <input type="text" name="tipotratamiento" id="tipotratamiento">
+
+        <input type="submit" value="Buscar">
+
+    </form>
+
+
+    {% if psicologo %}
+
+    <p>Psicólogos especializados en: {{tipotratamiento}}</p>
+
+    <ul>
+
+    {% for Psicologo in psicologo %}
+
+        <li> {{Psicologo.nombre}} </li>
+
+    {% endfor %}
+
+    </ul>
+
+    {% else %}
+    <p>No hay datos con esa descripción.</p>
+
+    {% endif %}
+
+    <br><p style="color:red;">{{respuesta}}</p>
 
 
 {% endblock %}

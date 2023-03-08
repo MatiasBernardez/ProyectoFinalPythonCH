@@ -4,11 +4,37 @@
 
 {% block contenidoQueCambia %}
 
-    <h1>ZONA DE ATENCIÓN</h1>
 
-    <p>MB</p>
+    <h1>BÚSQUEDA POR ZONA DE ATENCIÓN</h1><br>
 
-    <h3>MB</h3>
+    <form action="/AppBlog/buscar/" method="GET">
 
+        <input type="text" name="zonaatencion" id="zonaatencion">
+
+        <input type="submit" value="Buscar">
+
+    </form>
+
+
+    {% if psicologo %}
+
+    <p>Psicólogos en: {{zonaatencion}}</p>
+
+    <ul>
+
+    {% for Psicologo in psicologo %}
+
+        <li> {{Psicologo.nombre}} </li>
+
+    {% endfor %}
+
+    </ul>
+
+    {% else %}
+    <p>No hay datos con esa descripción.</p>
+
+    {% endif %}
+
+    <br><p style="color:red;">{{respuesta}}</p>
 
 {% endblock %}

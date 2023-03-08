@@ -30,7 +30,7 @@ def zonaatencion(request):
     return render (request, "AppBlog/zonaatencion.html")
 
 
-def psicologoFormulario(request):
+def inicio(request):
 
     if request.method == 'POST':
 
@@ -57,23 +57,79 @@ def psicologoFormulario(request):
 
         miFormulario = PsicologoFormulario()
 
-    return render(request, "AppBlog/psicologoFormulario.html", {"miFormulario":miFormulario})
+    return render(request, "AppBlog/inicio.html", {"miFormulario":miFormulario})
 
-def busquedaNombrePsicologo(request):
+def buscarzonaatencion(request):
 
-    return render(request, "AppBlog/busquedaNombrePsicologo.html")
+    if request.GET["zonaatencion"]:
 
-def buscar(request):
+        zonaatencion = request.GET['zonaatencion']
+        psicologo = Psicologo.objects.filter(zonaatencion__icontains=zonaatencion)
 
-    if request.GET["nombre"]:
-
-        nombre = request.GET['nombre']
-        psicologo = Psicologo.objects.filter(nombre__icontains=nombre)
-
-        return render(request, "AppBlog/resultadosBusqueda.html", {"psicologo":psicologo, "nombre":nombre})
+        return render(request, "AppBlog/zonaatencion.html", {"psicologo":psicologo, "zonaatencion":zonaatencion})
 
     else:
 
-        respuesta = "No enviaste datos"
+        respuesta = "No hay datos con esa descripción."
 
-    return HttpResponse(respuesta)
+    return render(request, "AppBlog/zonaatencion.html", {"respuesta":respuesta})
+
+def buscarmodalidadatencion(request):
+
+    if request.GET["modalidadatencion"]:
+
+        modalidadatencion = request.GET['modalidadatencion']
+        psicologo = Psicologo.objects.filter(modalidadatencion__icontains=modalidadatencion)
+
+        return render(request, "AppBlog/modalidadatencion.html", {"psicologo":psicologo, "modalidadatencion":modalidadatencion})
+
+    else:
+
+        respuesta = "No hay datos con esa descripción."
+
+    return render(request, "AppBlog/modalidadatencion.html", {"respuesta":respuesta})
+
+def buscartipotratamiento(request):
+
+    if request.GET["tipotratamiento"]:
+
+        tipotratamiento = request.GET['tipotratamiento']
+        psicologo = Psicologo.objects.filter(tipotratamiento__icontains=tipotratamiento)
+
+        return render(request, "AppBlog/tipotratamiento.html", {"psicologo":psicologo, "tipotratamiento":tipotratamiento})
+
+    else:
+
+        respuesta = "No hay datos con esa descripción."
+
+    return render(request, "AppBlog/tipotratamiento.html", {"respuesta":respuesta})
+
+def buscarorientacion(request):
+
+    if request.GET["orientacion"]:
+
+        orientacion = request.GET['orientacion']
+        psicologo = Psicologo.objects.filter(orientacion__icontains=orientacion)
+
+        return render(request, "AppBlog/orientacion.html", {"psicologo":psicologo, "orientacion":orientacion})
+
+    else:
+
+        respuesta = "No hay datos con esa descripción."
+
+    return render(request, "AppBlog/orientacion.html", {"respuesta":respuesta})
+
+def buscarespecialidad(request):
+
+    if request.GET["especialidad"]:
+
+        especialidad = request.GET['especialidad']
+        psicologo = Psicologo.objects.filter(especialidad__icontains=especialidad)
+
+        return render(request, "AppBlog/especialidad.html", {"psicologo":psicologo, "especialidad":especialidad})
+
+    else:
+
+        respuesta = "No hay datos con esa descripción."
+
+    return render(request, "AppBlog/especialidad.html", {"respuesta":respuesta})

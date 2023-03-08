@@ -4,11 +4,38 @@
 
 {% block contenidoQueCambia %}
 
-    <h1>MODALIDAD DE ATENCIÓN</h1>
 
-    <p>MB</p>
+    <h1>BÚSQUEDA POR MODALIDAD DE ATENCIÓN</h1><br>
 
-    <h3>MB</h3>
+    <form action="/AppBlog/buscar1/" method="GET">
+
+        <input type="text" name="modalidadatencion" id="modalidadatencion">
+
+        <input type="submit" value="Buscar">
+
+    </form>
+
+
+    {% if psicologo %}
+
+    <p>Psicólogos que atienden bajo modalidad: {{modalidadatencion}}</p>
+
+    <ul>
+
+    {% for Psicologo in psicologo %}
+
+        <li> {{Psicologo.nombre}} </li>
+
+    {% endfor %}
+
+    </ul>
+
+    {% else %}
+    <p>No hay datos con esa descripción.</p>
+
+    {% endif %}
+
+    <br><p style="color:red;">{{respuesta}}</p>
 
 
 {% endblock %}

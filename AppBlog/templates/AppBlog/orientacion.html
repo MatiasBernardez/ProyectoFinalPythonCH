@@ -4,11 +4,38 @@
 
 {% block contenidoQueCambia %}
 
-    <h1>ORIENTACIÓN</h1>
 
-    <p>MB</p>
+    <h1>BÚSQUEDA POR ORIENTACION</h1><br>
 
-    <h3>MB</h3>
+    <form action="/AppBlog/buscar3/" method="GET">
+
+        <input type="text" name="orientacion" id="orientacion">
+
+        <input type="submit" value="Buscar">
+
+    </form>
+
+
+    {% if psicologo %}
+
+    <p>Psicólogos con orientación: {{orientacion}}</p>
+
+    <ul>
+
+    {% for Psicologo in psicologo %}
+
+        <li> {{Psicologo.nombre}} </li>
+
+    {% endfor %}
+
+    </ul>
+
+    {% else %}
+    <p>No hay datos con esa descripción.</p>
+
+    {% endif %}
+
+    <br><p style="color:red;">{{respuesta}}</p>
 
 
 {% endblock %}
