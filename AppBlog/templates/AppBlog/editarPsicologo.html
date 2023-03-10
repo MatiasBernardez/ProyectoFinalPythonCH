@@ -8,11 +8,11 @@
 </head>
 <body>
 
+
     {% for p in psicologos %}
 
         <li>{{p}}</li>
         <button>
-            <a href="{% url 'eliminarPsicologo' p.nombre %}">Eliminar</a>
             <a href="{% url 'editarPsicologo' p.nombre %}">Editar</a>
         </button>
 

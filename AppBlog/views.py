@@ -152,3 +152,42 @@ def eliminarPsicologo(request, psicologo_nombre):
     contexto = {"psicologos":psicologos}
 
     return render(request, "AppBlog/leerPsicologos.html", contexto)
+
+def editarPsicologo(request, psicologo_nombre):
+
+    psicologo = Psicologo.objects.get(nombre=psicologo_nombre)
+
+    if request.method == 'POST':
+
+        miFormulario = PsicologoFormulario(request.POST)
+
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+
+            informacion = miFormulario.cleaned_data
+
+            psicologo.nombre = informacion['nombre']
+            psicologo.apellido = informacion['apellido']
+            psicologo.matricula = informacion['matrícula']
+            psicologo.email = informacion['email']
+            psicologo.telefono = informacion['teléfono']
+            psicologo.zonaatencion = informacion['zona_de_atención']
+            psicologo.modalidadatencion = informacion['modalidad_de_atención']
+            psicologo.orientacion = informacion['orientación']
+            psicologo.especialidad = informacion['especialidad']
+            psicologo.tipotratamiento = informacion['tipo_de_tratamiento']
+
+            psicologo.save()
+
+            return render(request, "AppBlog/inicio.html")
+
+    else:
+
+        miFormulario = PsicologoFormulario(initial={'nombre': psicologo.nombre, 'apellido': psicologo.apellido,
+        'matrícula': psicologo.matricula, 'email': psicologo.email, 'teléfono': psicologo.telefono,
+        'zona_de_atención': psicologo.zonaatencion, 'modalidad_de_atención': psicologo.modalidadatencion,
+        'orientacion': psicologo.orientacion, 'especialidad': psicologo.especialidad,
+        'tipo_de_tratamiento': psicologo.tipotratamiento})
+
+    return render(request, "AppBlog/editarPsicologo.html", {"miFormulario":miFormulario, "psicologo_nombre":psicologo_nombre })
