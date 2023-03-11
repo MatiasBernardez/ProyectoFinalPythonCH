@@ -5,6 +5,10 @@ from .forms import PsicologoFormulario
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from .forms import UserRegisterForm
 
 
 # Create your views here.
@@ -222,3 +226,51 @@ class PsicologoDelete(DeleteView):
 
     model = Psicologo
     success_url = "/AppBlog/psicologo/list"
+
+def login_request(request):
+
+    if request.method == "POST":
+        form = AuthenticationForm(request, data = request.POST)
+
+        if form.is_valid():
+            usuario = form.cleaned_data.get('username')
+            contraseña = form.cleaned_data.get('password')
+
+            user = authenticate(username=usuario, password=contraseña)
+
+
+            if user is not None:
+                login(request, user)
+
+                return render(request, "AppBlog/inicio.html", {"mensaje":f"Bienvenido {usuario}"})
+
+            else:
+
+                return render(request, "AppBlog/inicio.html", {"mensaje":"Error, datos incorrectos"})
+
+    else:
+
+                return render(request, "AppBlog/inicio.html", {"mensaje":"Error, formulario erroneo"})
+
+    form = AuthenticationForm()
+
+    return render(request, "AppBlog/login.html", {'form':form})
+
+def register(request):
+
+    if request.method == 'POST':
+
+        form = UserRegisterForm(request.POST)
+
+        if form.is_valid():
+
+            username = form.cleaned_data['username']
+            form.save()
+            return render(request,"AppBlog/inicio.html", {"mensaje":"Usuario creado :)"})
+
+
+    else:
+        form = UserRegisterForm()
+
+
+    return render(request,"AppBlog/registro.html", {"form":form})

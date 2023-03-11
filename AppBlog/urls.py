@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib.auth.views import LogoutView
 from AppBlog import views
 
 urlpatterns = [
@@ -23,5 +24,8 @@ urlpatterns = [
     path(r'^(?P<pk>\d+)$', views.PsicologoDetalle.as_view(), name='Detail'),
     path(r'^nuevo$', views.PsicologoCreacion.as_view(), name='New'),
     path(r'^editar/(?P<pk>\d+)$', views.PsicologoUpdate.as_view(), name='Edit'),
-    path(r'^borrar/(?P<pk>\d+)$', views.PsicologoDelete.as_view(), name='Delete')
+    path(r'^borrar/(?P<pk>\d+)$', views.PsicologoDelete.as_view(), name='Delete'),
+    path('login', views.login_request, name='login'),
+    path('register', views.register, name='register'),
+    path('logout', LogoutView.as_view(template_name='AppBlog/logout.html'), name='logout'),
 ]
