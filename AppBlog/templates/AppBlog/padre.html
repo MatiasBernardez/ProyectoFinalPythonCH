@@ -31,11 +31,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         {% if request.user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'zonaatencion' %}">Zona de atención</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'modalidadatencion' %}">Modalidad de atención</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'zonaatencion' %}">Zona</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'modalidadatencion' %}">M. de atención</a></li>
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'orientacion' %}">Orientación</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'tipotratamiento' %}">Tipo de tratamiento</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'tipotratamiento' %}">T. de tratamiento</a></li>
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'especialidad' %}">Especialidad</a></li>
+                        {% endif %}
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'acercademi' %}">Acerca de mí</a></li>
+                        {% if request.user.is_authenticated %}
                         <p class="text-muted samll mb-4 mb-lg-0">Hola,<br> {{user.username}}!</p>
                         <li class="nav-item"><a class="nav-link" href="editarPerfil">Editar perfil</a></li>
                         <li class="nav-item"><a class="nav-link" href="logout">Cerrar sesión</a></li>

@@ -14,6 +14,11 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+
+def acercademi(request):
+
+    return render (request, "AppBlog/acercademi.html")
+
 @login_required
 def inicio(request):
 
