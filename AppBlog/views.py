@@ -9,35 +9,42 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserRegisterForm
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 
+@login_required
 def inicio(request):
 
     return render (request, "AppBlog/inicio.html")
 
+@login_required
 def especialidad(request):
 
     return render (request, "AppBlog/especialidad.html")
 
+@login_required
 def modalidadatencion(request):
 
     return render (request, "AppBlog/modalidadatencion.html")
 
+@login_required
 def orientacion(request):
 
     return render (request, "AppBlog/orientacion.html")
 
+@login_required
 def tipotratamiento(request):
 
     return render (request, "AppBlog/tipotratamiento.html")
 
+@login_required
 def zonaatencion(request):
 
     return render (request, "AppBlog/zonaatencion.html")
 
-
+@login_required
 def inicio(request):
 
     if request.method == 'POST':

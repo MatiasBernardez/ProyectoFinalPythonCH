@@ -1,9 +1,10 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class PsicologoFormulario(forms.Form):
+class PsicologoFormulario(LoginRequiredMixin, forms.Form):
 
     nombre = forms.CharField(max_length=40)
     apellido = forms.CharField(max_length=40)
