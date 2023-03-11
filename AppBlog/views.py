@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Psicologo
-from .forms import PsicologoFormulario
+from .forms import PsicologoFormulario, UserEditForm
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -45,7 +45,7 @@ def zonaatencion(request):
     return render (request, "AppBlog/zonaatencion.html")
 
 @login_required
-def inicio(request):
+def unirse(request):
 
     if request.method == 'POST':
 
@@ -66,13 +66,13 @@ def inicio(request):
 
             psicologo.save()
 
-            return render (request, "AppBlog/inicio.html")
+            return render (request, "AppBlog/unirse.html")
 
     else:
 
         miFormulario = PsicologoFormulario()
 
-    return render(request, "AppBlog/inicio.html", {"miFormulario":miFormulario})
+    return render(request, "AppBlog/unirse.html", {"miFormulario":miFormulario})
 
 def buscarzonaatencion(request):
 
@@ -281,3 +281,26 @@ def register(request):
 
 
     return render(request,"AppBlog/registro.html", {"form":form})
+
+@login_required
+def editarPerfil(request):
+
+    usuario = request.user
+
+    if request.method == 'POST':
+        miFormulario = UserEditForm(request.POST)
+        if miFormulario.is_valid:
+
+            informacion = miFormulario.cleaned_data
+
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password2']
+            usuario.save()
+
+            return render(request, "AppBlog/inicio.html")
+
+    else:
+        miFormulario = UserEditForm(initial={'email':usuario.email})
+
+    return render(request, "AppBlog/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})

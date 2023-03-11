@@ -4,26 +4,14 @@
 
 {% block contenidoQueCambia %}
 
-    <h1>INICIO</h1>
+<form action="" method="POST">
 
-    <p>MB</p>
+    {% csrf_token %}
 
-    <h3>TODO LO DE INICIO</h3>
+    {{form.as_p}}
 
-    {% if miFormulario.errors %}
+    <button type="submit"> INICIAR SESIÓN</button>
 
-    <p style ="color:red;">Están mal los datos, revisar</p>
-
-    {% endif %}
-
-    <form action="" method="POST">{% csrf_token %}
-
-        <table>
-            {{ miFormulario.as_table }}
-        </table>
-
-        <input type="submit", value="Enviar">
-
-    </form>
+</form>
 
 {% endblock %}

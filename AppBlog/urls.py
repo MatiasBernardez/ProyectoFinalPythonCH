@@ -4,6 +4,7 @@ from AppBlog import views
 
 urlpatterns = [
     path('', views.inicio, name="inicio"),
+    path('unirse', views.unirse, name="unirse"),
     path('psicologo', views.inicio, name="psicologo"),
     path('especialidad', views.especialidad, name="especialidad"),
     path('modalidadatencion', views.modalidadatencion, name="modalidadatencion"),
@@ -28,4 +29,5 @@ urlpatterns = [
     path('login', views.login_request, name='login'),
     path('register', views.register, name='register'),
     path('logout', LogoutView.as_view(template_name='AppBlog/logout.html'), name='logout'),
+    path('editarPerfil', views.editarPerfil, name="editarPerfil"),
 ]
