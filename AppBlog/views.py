@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Psicologo
 from .forms import PsicologoFormulario
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
 
 # Create your views here.
 
@@ -169,14 +173,14 @@ def editarPsicologo(request, psicologo_nombre):
 
             psicologo.nombre = informacion['nombre']
             psicologo.apellido = informacion['apellido']
-            psicologo.matricula = informacion['matrícula']
+            psicologo.matricula = informacion['matricula']
             psicologo.email = informacion['email']
-            psicologo.telefono = informacion['teléfono']
-            psicologo.zonaatencion = informacion['zona_de_atención']
-            psicologo.modalidadatencion = informacion['modalidad_de_atención']
-            psicologo.orientacion = informacion['orientación']
+            psicologo.telefono = informacion['telefono']
+            psicologo.zonaatencion = informacion['zonaatencion']
+            psicologo.modalidadatencion = informacion['modalidadatencion']
+            psicologo.orientacion = informacion['orientacion']
             psicologo.especialidad = informacion['especialidad']
-            psicologo.tipotratamiento = informacion['tipo_de_tratamiento']
+            psicologo.tipotratamiento = informacion['tipotratamiento']
 
             psicologo.save()
 
@@ -185,9 +189,36 @@ def editarPsicologo(request, psicologo_nombre):
     else:
 
         miFormulario = PsicologoFormulario(initial={'nombre': psicologo.nombre, 'apellido': psicologo.apellido,
-        'matrícula': psicologo.matricula, 'email': psicologo.email, 'teléfono': psicologo.telefono,
-        'zona_de_atención': psicologo.zonaatencion, 'modalidad_de_atención': psicologo.modalidadatencion,
+        'matricula': psicologo.matricula, 'email': psicologo.email, 'telefono': psicologo.telefono,
+        'zonaatencion': psicologo.zonaatencion, 'modalidadatencion': psicologo.modalidadatencion,
         'orientacion': psicologo.orientacion, 'especialidad': psicologo.especialidad,
-        'tipo_de_tratamiento': psicologo.tipotratamiento})
+        'tipotratamiento': psicologo.tipotratamiento})
 
     return render(request, "AppBlog/editarPsicologo.html", {"miFormulario":miFormulario, "psicologo_nombre":psicologo_nombre })
+
+class PsicologoList(ListView):
+
+    model = Psicologo
+    template_name = "AppBlog/psicologo_list.html"
+
+class PsicologoDetalle(DetailView):
+
+    model = Psicologo
+    template_name = "AppBlog/psicologo_detalle.html"
+
+class PsicologoCreacion(CreateView):
+
+    model = Psicologo
+    success_url = "/AppBlog/psicologo/list"
+    fields = ['nombre', 'apellido', 'matricula', 'email', 'telefono', 'zonaatencion', 'modalidadatencion', 'orientacion', 'especialidad', 'tipotratamiento']
+
+class PsicologoUpdate(UpdateView):
+
+    model = Psicologo
+    success_url = "/AppBlog/psicologo/list"
+    fields = ['nombre', 'apellido', 'matricula', 'email', 'telefono', 'zonaatencion', 'modalidadatencion', 'orientacion', 'especialidad', 'tipotratamiento']
+
+class PsicologoDelete(DeleteView):
+
+    model = Psicologo
+    success_url = "/AppBlog/psicologo/list"

@@ -3,6 +3,7 @@ from AppBlog import views
 
 urlpatterns = [
     path('', views.inicio, name="inicio"),
+    path('psicologo', views.inicio, name="psicologo"),
     path('especialidad', views.especialidad, name="especialidad"),
     path('modalidadatencion', views.modalidadatencion, name="modalidadatencion"),
     path('orientacion', views.orientacion, name="orientacion"),
@@ -18,4 +19,9 @@ urlpatterns = [
     path('leerPsicologos', views.leerPsicologos, name="leerPsicologos"),
     path('elminarPsicologo/<psicologo_nombre>', views.eliminarPsicologo, name="eliminarPsicologo"),
     path('editarPsicologo/<psicologo_nombre>', views.editarPsicologo, name="editarPsicologo"),
+    path('psicologo/list', views.PsicologoList.as_view(), name='List'),
+    path(r'^(?P<pk>\d+)$', views.PsicologoDetalle.as_view(), name='Detail'),
+    path(r'^nuevo$', views.PsicologoCreacion.as_view(), name='New'),
+    path(r'^editar/(?P<pk>\d+)$', views.PsicologoUpdate.as_view(), name='Edit'),
+    path(r'^borrar/(?P<pk>\d+)$', views.PsicologoDelete.as_view(), name='Delete')
 ]

@@ -9,20 +9,12 @@
 <body>
 
 
-    {% for p in psicologos %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Enviar" />
+    </form>
 
-        <li>{{p}}</li>
-        <button>
-            <a href="{% url 'editarPsicologo' p.nombre %}">Editar</a>
-        </button>
-
-
-    {% endfor %}
-
-    <br>
-    <br>
-
-    <a href = "psicologo">Agregar otro psicólogo</a>
 
 </body>
 </html>

@@ -9,20 +9,11 @@
 <body>
 
 
-    {% for p in psicologos %}
+    <form method="post">{% csrf_token %}
+        ¿Estás seguro que deseas borrar el psicólogo "{{ object }}"?
+        <input type="submit" value="Borrar" />
+    </form>
 
-        <li>{{p}}</li>
-        <button>
-            <a href="{% url 'editarPsicologo' p.nombre %}">Editar</a>
-        </button>
-
-
-    {% endfor %}
-
-    <br>
-    <br>
-
-    <a href = "psicologo">Agregar otro psicólogo</a>
 
 </body>
 </html>
