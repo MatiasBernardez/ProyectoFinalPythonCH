@@ -5,7 +5,7 @@
 {% block contenidoQueCambia %}
 
 
-    <h1>BÚSQUEDA POR ORIENTACIÓN</h1><br>
+    <h3>BÚSQUEDA POR ORIENTACIÓN</h3><br>
 
     <form action="/AppBlog/buscar3/" method="GET">
 
@@ -18,7 +18,7 @@
 
     {% if psicologo %}
 
-    <p>Psicólogos con orientación: {{orientacion}}</p>
+    <p>Psicólogos con orientación en: {{orientacion}}</p>
 
     <ul>
 
@@ -36,6 +36,10 @@
     {% endif %}
 
     <br><p style="color:red;">{{respuesta}}</p>
+    <br>
+    <br>
+    <br>
+    <br>
 
 
 {% endblock %}

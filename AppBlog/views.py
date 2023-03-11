@@ -17,9 +17,7 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def inicio(request):
 
-    avatares = Avatar.objects.filter(user=request.user.id)
-
-    return render (request, "AppBlog/inicio.html", {"url":avatares[0].imagen.url})
+    return render (request, "AppBlog/inicio.html")
 
 @login_required
 def especialidad(request):
@@ -259,7 +257,7 @@ def login_request(request):
 
     else:
 
-                return render(request, "AppBlog/inicio.html", {"mensaje":"Error, formulario erroneo"})
+                return render(request, "AppBlog/login.html", {"mensaje":"Error, formulario erroneo"})
 
     form = AuthenticationForm()
 
@@ -291,7 +289,7 @@ def editarPerfil(request):
 
     if request.method == 'POST':
         miFormulario = UserEditForm(request.POST)
-        if miFormulario.is_valid:
+        if miFormulario.is_valid():
 
             informacion = miFormulario.cleaned_data
 
