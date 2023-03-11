@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Psicologo
+from .models import Psicologo, Avatar
 from .forms import PsicologoFormulario, UserEditForm
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -17,7 +17,9 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def inicio(request):
 
-    return render (request, "AppBlog/inicio.html")
+    avatares = Avatar.objects.filter(user=request.user.id)
+
+    return render (request, "AppBlog/inicio.html", {"url":avatares[0].imagen.url})
 
 @login_required
 def especialidad(request):

@@ -19,7 +19,9 @@
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'inicio' %}">INICIO</a>
+                {% if not request.user.is_authenticated %}
+                <a class="navbar-brand" href="{% url 'login' %}">INICIO</a>
+                {% endif %}
                 <a class="navbar-brand" href="{% url 'unirse' %}">UNETE</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -29,8 +31,14 @@
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'orientacion' %}">Orientación</a></li>
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'tipotratamiento' %}">Tipo de tratamiento</a></li>
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'especialidad' %}">Especialidad</a></li>
+                        {% if request.user.is_authenticated %}
+
+                        <p class="text-muted samll mb-4 mb-lg-0">Hola,<br> {{user.username}}!</p>
+                        {% endif %}
                         <li class="nav-item"><a class="nav-link" href="#!">Perfil</a></li>
+                        {% if request.user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="logout">Cerrar sesión</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

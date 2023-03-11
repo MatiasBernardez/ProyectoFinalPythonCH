@@ -2,6 +2,7 @@ from django.urls import path
 from django.contrib.auth.views import LogoutView
 from AppBlog import views
 
+
 urlpatterns = [
     path('', views.inicio, name="inicio"),
     path('unirse', views.unirse, name="unirse"),
